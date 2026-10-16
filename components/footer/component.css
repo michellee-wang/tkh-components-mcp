@@ -1,0 +1,28 @@
+.tkh-footer { padding: 48px 15px; color: var(--tkh-black); }
+.tkh-footer__row { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; max-width: 1140px; margin: 0 auto; }
+.tkh-footer__links { flex: 0 0 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; row-gap: 24px; }
+.tkh-footer__col { flex: 0 0 33.333%; padding: 0 15px; margin-bottom: 8px; display: flex; justify-content: center; }
+.tkh-footer__col h2 { font-size: 21px; line-height: 26.25px; font-weight: 900; color: var(--tkh-black); margin-bottom: 24px; }
+.tkh-footer__col ul { list-style: none; padding-left: 20px; }
+.tkh-footer__col li { position: relative; margin-top: 8px; font-size: 16px; line-height: 24px; }
+.tkh-footer__col li a::before {
+  content: ''; position: absolute; left: -16px; top: 9px; width: 6px; height: 6px;
+  border-top: 1.5px solid currentColor; border-right: 1.5px solid currentColor; transform: rotate(45deg);
+}
+.tkh-footer__col a:hover { color: var(--tkh-purple); }
+.tkh-footer__contact li { display: flex; gap: 14px; align-items: flex-start; font-size: 16px; line-height: 24px; margin-top: 8px; margin-left: -28px; }
+.tkh-footer__contact li a::before { display: none; }
+.tkh-footer__contact svg { flex: 0 0 auto; margin-top: 2px; width: 22px; }
+.tkh-footer__brand { flex: 0 0 100%; order: 99; max-width: 640px; padding: 0 15px; margin-bottom: 16px; text-align: center; }
+.tkh-footer__logo { width: 91.66%; display: block; margin: 0 auto 16px; }
+.tkh-footer__social { display: flex; justify-content: space-around; align-items: center; width: 91.66%; margin: 0 auto; }
+.tkh-footer__social img { width: 40px; height: 40px; border-radius: 50%; display: block; transition: transform .3s; }
+.tkh-footer__social a:hover img { transform: translateY(-2px); }
+.tkh-footer__badges { display: flex; justify-content: center; gap: 12px; margin-top: 16px; }
+.tkh-footer__badges img { height: 90px; width: auto; display: block; }
+@media (max-width: 767.98px) { .tkh-footer__col { flex-basis: 50%; justify-content: flex-start; } }
+@media (min-width: 1200px) {
+  .tkh-footer__row { max-width: 1320px; flex-wrap: nowrap; align-items: center; gap: 24px; }
+  .tkh-footer__brand { order: -1; flex: 0 0 30%; margin-bottom: 0; }
+  .tkh-footer__links { flex: 1 1 auto; }
+}

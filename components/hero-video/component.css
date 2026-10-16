@@ -1,0 +1,3 @@
+.tkh-hero { background-color: #F3F4F3; background-size: cover; background-position: center; padding: 57px 15px 63px; display: flex; justify-content: center; }
+.tkh-hero__media { width: min(926px, 100%); aspect-ratio: 16 / 9; display: block; object-fit: contain; background: transparent; }
+@media (max-width: 767.98px) { .tkh-hero { padding: 24px 0; } }

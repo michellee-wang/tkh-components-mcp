@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE KNOWLEDGE HOUSE</title>
+<link rel="icon" href="https://d2x0vsetbcibj0.cloudfront.net/static-final/assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700;900&display=swap">
+<style>
+:root {
+  --tkh-purple: #332459;
+  --tkh-purple-news: #342459;
+  --tkh-purple-nav: #291B4B;
+  --tkh-gold: #FFC20A;
+  --tkh-lavender: #C0BFF8;
+  --tkh-off-white: #F6F3F1;
+  --tkh-footer-gray: #E2E2E2;
+  --tkh-dropdown-gray: #E7E7E7;
+  --tkh-text: #525252;
+  --tkh-black: #000000;
+  --tkh-white: #FFFFFF;
+  --tkh-font: 'Lato', sans-serif;
+  --tkh-container: 1140px;
+  --tkh-header-h: 96px;
+  --tkh-shadow-dropdown: 0 5px 10px rgba(16,16,16,.05);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { overflow-x: hidden; }
+body {
+  margin: 0;
+  font-family: var(--tkh-font);
+  font-size: 18px; line-height: 27px; font-weight: 400;
+  color: var(--tkh-text);
+  background-color: var(--tkh-purple);
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6, p { margin: 0; }
+h2 { font-size: 36px; line-height: 45px; font-weight: 900; color: var(--tkh-black); }
+h3 { font-size: 21px; line-height: 29.4px; font-weight: 900; color: var(--tkh-black); }
+a { color: inherit; text-decoration: none; transition: color .3s; }
+img { max-width: 100%; }
+ul { margin: 0; padding: 0; }
+
+.tkh-container { width: 100%; max-width: var(--tkh-container); margin: 0 auto; padding: 0 15px; }
+
+/* Scrollbar: 5px, gold thumb over a faint track (reads purple because body is purple) */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background-color: rgba(16,16,16,.05); }
+::-webkit-scrollbar-thumb { background-color: var(--tkh-gold); }
+
+/* Buttons with cursor-origin circular ripple fill */
+.tkh-btn {
+  position: relative; z-index: 0; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--tkh-font); font-weight: 700; text-align: center; white-space: nowrap;
+  border: 0; border-radius: 0; cursor: pointer; text-decoration: none;
+  transition: color .3s;
+}
+.tkh-btn > .tkh-ripple {
+  position: absolute; z-index: -1; display: block; width: 0; height: 0;
+  border-radius: 50%; transform: translate(-50%, -50%);
+  transition: width .6s, height .6s; pointer-events: none;
+}
+.tkh-btn:hover > .tkh-ripple { width: var(--tkh-ripple, 640px); height: var(--tkh-ripple, 640px); }
+.tkh-btn--sm { font-size: 16px; line-height: 17.6px; padding: 13px 27px; }
+.tkh-btn--md { font-size: 18px; line-height: 19.8px; padding: 20px 60px; }
+/* primary: gold -> purple flood, text white */
+.tkh-btn--primary { background-color: var(--tkh-gold); color: var(--tkh-purple); }
+.tkh-btn--primary > .tkh-ripple { background-color: var(--tkh-purple); }
+.tkh-btn--primary:hover { color: var(--tkh-white); }
+/* tertiary: purple -> white flood, text purple */
+.tkh-btn--tertiary { background-color: var(--tkh-purple); color: var(--tkh-white); }
+.tkh-btn--tertiary > .tkh-ripple { background-color: var(--tkh-white); }
+.tkh-btn--tertiary:hover { color: var(--tkh-purple); }
+.tkh-btn--rounded { border-radius: 8px; }
+
+/* Scroll reveal (AOS "fade", 400ms ease) */
+[data-tkh-reveal] { opacity: 0; transition: opacity .4s ease; }
+[data-tkh-reveal].is-revealed { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { [data-tkh-reveal] { opacity: 1; transition: none; } }
+
+
+.tkh-header { background: var(--tkh-white); position: relative; z-index: 50; }
+.tkh-header__inner { height: var(--tkh-header-h); display: flex; align-items: center; justify-content: space-between; }
+.tkh-header__logo img { height: 64px; width: auto; display: block; }
+.tkh-header__right { display: flex; align-items: center; }
+.tkh-nav { display: flex; align-items: center; list-style: none; gap: 18px; margin-right: 21px; }
+.tkh-nav > li { position: relative; }
+.tkh-nav > li > a { display: block; font-size: 18px; line-height: 27px; font-weight: 700; color: var(--tkh-purple-nav); padding: 34px 0; }
+.tkh-nav > li > a > span { position: relative; padding: 0 8px; }
+.tkh-nav > li > a > span::after {
+  content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px;
+  background: var(--tkh-gold); transform: scaleX(0); transition: all .3s;
+}
+.tkh-nav > li:hover > a { color: var(--tkh-gold); }
+.tkh-nav > li:hover > a > span::after { transform: scaleX(1); }
+.tkh-nav__sub {
+  position: absolute; top: calc(100% - 3px); left: -17px; min-width: 250px;
+  list-style: none; padding: 30px 0 30px 20px; background: var(--tkh-dropdown-gray);
+  box-shadow: var(--tkh-shadow-dropdown);
+  opacity: 0; visibility: hidden; transform: translateY(6px);
+  transition: opacity .3s, transform .3s, visibility .3s;
+}
+.tkh-nav > li:hover > .tkh-nav__sub, .tkh-nav > li:focus-within > .tkh-nav__sub { opacity: 1; visibility: visible; transform: none; }
+.tkh-nav__sub a { display: flex; align-items: center; padding: 4px 40px; font-size: 16px; line-height: 1.8; color: var(--tkh-purple-nav); white-space: nowrap; }
+.tkh-nav__sub a:hover { color: var(--tkh-white); }
+.tkh-burger { display: none; width: 34px; height: 20px; position: relative; background: none; border: 0; cursor: pointer; padding: 0; }
+.tkh-burger span { position: absolute; left: 0; width: 100%; height: 2px; background: var(--tkh-purple-nav); transition: transform .3s, top .3s; }
+.tkh-burger span:nth-child(1) { top: 4px; }
+.tkh-burger span:nth-child(2) { top: 14px; }
+.tkh-header.is-open .tkh-burger span { background: var(--tkh-white); }
+.tkh-header.is-open .tkh-burger span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+.tkh-header.is-open .tkh-burger span:nth-child(2) { top: 9px; transform: rotate(-45deg); }
+.tkh-overlay {
+  position: fixed; inset: 0; background: var(--tkh-purple); z-index: 40;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+  opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; overflow-y: auto; padding: 100px 20px 40px;
+}
+.tkh-overlay a { color: var(--tkh-white); font-size: 28px; font-weight: 900; }
+.tkh-overlay a:hover { color: var(--tkh-gold); }
+.tkh-overlay .tkh-overlay__sub a { font-size: 16px; font-weight: 400; color: var(--tkh-lavender); }
+.tkh-overlay .tkh-overlay__sub { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin-top: -10px; }
+.tkh-header.is-open + .tkh-overlay { opacity: 1; visibility: visible; }
+@media (max-width: 991.98px) {
+  .tkh-header__inner { height: auto; padding-top: 16px; padding-bottom: 16px; }
+  .tkh-header__logo img { height: 5vh; min-height: 36px; }
+  .tkh-nav, .tkh-header__right .tkh-btn { display: none; }
+  .tkh-burger { display: block; z-index: 60; }
+  .tkh-header.is-open { background: transparent; position: fixed; inset: 0 0 auto 0; }
+}
+
+
+.tkh-announce { min-height: 80px; display: flex; align-items: center; justify-content: center; padding: 14px 15px; text-align: center; }
+.tkh-announce__row { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.tkh-announce__text { font-size: 20px; line-height: 30px; color: var(--tkh-black); }
+.tkh-announce .tkh-btn { width: 151px; height: 52px; padding: 0; font-size: 16.2px; }
+@media (max-width: 767.98px) { .tkh-announce__row { flex-direction: column; gap: 8px; } }
+
+
+.tkh-hero { background-color: #F3F4F3; background-size: cover; background-position: center; padding: 57px 15px 63px; display: flex; justify-content: center; }
+.tkh-hero__media { width: min(926px, 100%); aspect-ratio: 16 / 9; display: block; object-fit: contain; background: transparent; }
+@media (max-width: 767.98px) { .tkh-hero { padding: 24px 0; } }
+
+
+.tkh-mission { padding: 16px; }
+.tkh-mission__col { max-width: 979px; margin: 0 auto; padding: 24px; text-align: center; }
+.tkh-mission__body { margin: 48px; }
+.tkh-mission__body p { color: var(--tkh-black); font-size: 18px; line-height: 27px; }
+.tkh-mission__body p + p { margin-top: 30px; }
+@media (max-width: 767.98px) { .tkh-mission__body { margin: 8px; } .tkh-mission h2 { font-size: 30px; line-height: 38px; } }
+
+
+.tkh-pillars { padding: 0 15px 48px; }
+.tkh-pillars__row { max-width: 785px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); }
+.tkh-pillars__item { display: flex; flex-direction: column; align-items: center; padding: 0 15px; margin-bottom: 8px; }
+.tkh-pillars__item h3 { margin-bottom: 16px; white-space: nowrap; text-transform: uppercase; }
+.tkh-pillars__item img { width: 89px; height: 89px; display: block; }
+.tkh-pillars__item .tkh-pillars__circle { width: 89px; height: 89px; border-radius: 50%; background: var(--tkh-lavender); display: flex; align-items: center; justify-content: center; color: var(--tkh-purple-nav); font-size: 40px; }
+@media (max-width: 767.98px) { .tkh-pillars__row { grid-template-columns: 1fr; gap: 48px; } }
+
+
+.tkh-testi { background-color: var(--tkh-off-white); background-size: cover; background-position: center; padding: 16px; }
+.tkh-testi__col { width: 83.333%; padding: 0 15px; }
+.tkh-testi__viewport { overflow: hidden; transition: height 1s; }
+.tkh-testi__track { display: flex; will-change: transform; }
+.tkh-testi__slide { flex: 0 0 100%; display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
+.tkh-testi__photo { height: 30vh; min-height: 220px; background-size: contain; background-position: center; background-repeat: no-repeat; margin-bottom: 16px; }
+.tkh-testi__text { min-height: 420px; display: flex; align-items: center; padding: 16px; }
+.tkh-testi__text h2 { text-transform: uppercase; margin: 8px 0 48px; }
+.tkh-testi__quote { margin-bottom: 48px; color: var(--tkh-text); }
+.tkh-testi__name, .tkh-testi__role { color: var(--tkh-black); }
+.tkh-testi__role { margin-bottom: 16px; }
+.tkh-testi__controls { display: flex; align-items: center; justify-content: center; height: 60px; padding: 0 30px; margin-top: 24px; color: var(--tkh-black); }
+.tkh-testi__btn { background: none; border: 0; cursor: pointer; font: 700 13px/1 var(--tkh-font); letter-spacing: 2px; text-transform: uppercase; color: inherit; padding: 8px 0; transition: color .3s; }
+.tkh-testi__btn:hover { color: var(--tkh-gold); }
+.tkh-testi__frac { font-size: 16px; margin: 0 25px; }
+@media (max-width: 991.98px) {
+  .tkh-testi__col { width: 100%; }
+  .tkh-testi__slide { grid-template-columns: 1fr; }
+  .tkh-testi__text { min-height: 0; }
+}
+
+
+.tkh-news { padding: 0 15px; }
+.tkh-news__col { max-width: 75%; margin: 0 auto; padding: 48px; text-align: center; }
+.tkh-news__col > h2 { color: var(--tkh-white); margin-bottom: 8px; }
+.tkh-news__sub { color: var(--tkh-white); margin-bottom: 16px; }
+.tkh-news__grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; margin: 0 -15px; }
+.tkh-news__card { flex: 0 0 100%; padding: 16px; }
+.tkh-news__card a { display: block; margin: 4px; }
+.tkh-news__img { height: 210px; width: 100%; background-size: cover; background-position: center; background-repeat: no-repeat; }
+.tkh-news__card h3 { color: var(--tkh-white); font-size: 20px; line-height: 28px; font-weight: 500; margin-top: 16px; text-align: center; }
+.tkh-news__card a:hover h3 { color: var(--tkh-gold); }
+@media (min-width: 992px) { .tkh-news__card { flex-basis: 50%; } }
+@media (min-width: 1200px) { .tkh-news__card { flex-basis: 33.333%; } }
+@media (max-width: 767.98px) { .tkh-news__col { max-width: 100%; padding: 32px 0; } }
+
+
+.tkh-footer { padding: 48px 15px; color: var(--tkh-black); }
+.tkh-footer__row { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; max-width: 1140px; margin: 0 auto; }
+.tkh-footer__links { flex: 0 0 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; row-gap: 24px; }
+.tkh-footer__col { flex: 0 0 33.333%; padding: 0 15px; margin-bottom: 8px; display: flex; justify-content: center; }
+.tkh-footer__col h2 { font-size: 21px; line-height: 26.25px; font-weight: 900; color: var(--tkh-black); margin-bottom: 24px; }
+.tkh-footer__col ul { list-style: none; padding-left: 20px; }
+.tkh-footer__col li { position: relative; margin-top: 8px; font-size: 16px; line-height: 24px; }
+.tkh-footer__col li a::before {
+  content: ''; position: absolute; left: -16px; top: 9px; width: 6px; height: 6px;
+  border-top: 1.5px solid currentColor; border-right: 1.5px solid currentColor; transform: rotate(45deg);
+}
+.tkh-footer__col a:hover { color: var(--tkh-purple); }
+.tkh-footer__contact li { display: flex; gap: 14px; align-items: flex-start; font-size: 16px; line-height: 24px; margin-top: 8px; margin-left: -28px; }
+.tkh-footer__contact li a::before { display: none; }
+.tkh-footer__contact svg { flex: 0 0 auto; margin-top: 2px; width: 22px; }
+.tkh-footer__brand { flex: 0 0 100%; order: 99; max-width: 640px; padding: 0 15px; margin-bottom: 16px; text-align: center; }
+.tkh-footer__logo { width: 91.66%; display: block; margin: 0 auto 16px; }
+.tkh-footer__social { display: flex; justify-content: space-around; align-items: center; width: 91.66%; margin: 0 auto; }
+.tkh-footer__social img { width: 40px; height: 40px; border-radius: 50%; display: block; transition: transform .3s; }
+.tkh-footer__social a:hover img { transform: translateY(-2px); }
+.tkh-footer__badges { display: flex; justify-content: center; gap: 12px; margin-top: 16px; }
+.tkh-footer__badges img { height: 90px; width: auto; display: block; }
+@media (max-width: 767.98px) { .tkh-footer__col { flex-basis: 50%; justify-content: flex-start; } }
+@media (min-width: 1200px) {
+  .tkh-footer__row { max-width: 1320px; flex-wrap: nowrap; align-items: center; gap: 24px; }
+  .tkh-footer__brand { order: -1; flex: 0 0 30%; margin-bottom: 0; }
+  .tkh-footer__links { flex: 1 1 auto; }
+}
+
+
+.tkh-legal { padding: 16px 15px; font-size: 14px; line-height: 21px; }
+.tkh-legal__row { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0 28px; }
+.tkh-legal a { color: var(--tkh-black); text-transform: uppercase; }
+.tkh-legal a:hover { color: var(--tkh-purple); }
+.tkh-legal p { color: var(--tkh-text); margin-left: -20px; }
+@media (max-width: 575.98px) { .tkh-legal p { margin-left: 0; width: 100%; text-align: center; } }
+
+</style>
+</head>
+<body>
+<header class="tkh-header">
+  <div class="tkh-container tkh-header__inner">
+    <a class="tkh-header__logo" href="/"><img src="https://d2x0vsetbcibj0.cloudfront.net/media/logos/TKH_Horizontal_Purple_Logo.png" alt="TKH Logo"></a>
+    <div class="tkh-header__right">
+      <nav aria-label="Main"><ul class="tkh-nav"><li><a href="https://www.theknowledgehouse.org/our_story"><span>About</span></a><ul class="tkh-nav__sub"><li><a href="https://www.theknowledgehouse.org/our_story/#section1">Our Story</a></li><li><a href="https://www.theknowledgehouse.org/team_and_supporters/">Board and Staff</a></li><li><a href="https://www.theknowledgehouse.org/news/">News</a></li><li><a href="https://theknowledgehouse.my.canva.site/2024-annual-report-web">2024 Annual Report</a></li><li><a href="https://theknowledgehouse.extensishrtalent.com/careers/jobs">Join the Team</a></li></ul></li><li><a href="https://www.theknowledgehouse.org/apply/"><span>Programs</span></a><ul class="tkh-nav__sub"><li><a href="https://www.theknowledgehouse.org/apply/">Programs Overview</a></li><li><a href="https://www.theknowledgehouse.org/teen_tech_launchpad/">Teen Tech Launchpad (High School)</a></li><li><a href="https://www.theknowledgehouse.org/innovation_fellowship/">Innovation Fellowship (18+)</a></li><li><a href="https://www.theknowledgehouse.org/technology_fellowship/">Technology Fellowship (18+ Connecticut)</a></li></ul></li><li><a href="https://www.theknowledgehouse.org/training-solutions/"><span>Training Solutions</span></a></li><li><a href="https://www.theknowledgehouse.org/locations/atlanta/"><span>Locations</span></a><ul class="tkh-nav__sub"><li><a href="https://www.theknowledgehouse.org/locations/atlanta/">Atlanta</a></li><li><a href="https://www.theknowledgehouse.org/locations/newark/">Newark</a></li><li><a href="https://www.theknowledgehouse.org/locations/new-york/">New York</a></li><li><a href="https://www.theknowledgehouse.org/locations/Los-Angeles/">Los Angeles</a></li><li><a href="https://www.theknowledgehouse.org/locations/Washington-DC/">Washington, D.C.</a></li></ul></li><li><a href="https://www.theknowledgehouse.org/get-involved/"><span>Get Involved</span></a><ul class="tkh-nav__sub"><li><a href="https://www.theknowledgehouse.org/get-involved/">Get Involved</a></li><li><a href="https://bit.ly/TKHVolunteer-Opportunities">Volunteer Opportunities</a></li></ul></li></ul></nav>
+      <a class="tkh-btn tkh-btn--primary tkh-btn--sm" href="https://bit.ly/TKH-Donate" target="_blank" rel="noopener">Donate<span class="tkh-ripple"></span></a>
+      <button class="tkh-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="tkh-overlay"><a href="https://www.theknowledgehouse.org/our_story">About</a><div class="tkh-overlay__sub"><a href="https://www.theknowledgehouse.org/our_story/#section1">Our Story</a><a href="https://www.theknowledgehouse.org/team_and_supporters/">Board and Staff</a><a href="https://www.theknowledgehouse.org/news/">News</a><a href="https://theknowledgehouse.my.canva.site/2024-annual-report-web">2024 Annual Report</a><a href="https://theknowledgehouse.extensishrtalent.com/careers/jobs">Join the Team</a></div><a href="https://www.theknowledgehouse.org/apply/">Programs</a><div class="tkh-overlay__sub"><a href="https://www.theknowledgehouse.org/apply/">Programs Overview</a><a href="https://www.theknowledgehouse.org/teen_tech_launchpad/">Teen Tech Launchpad (High School)</a><a href="https://www.theknowledgehouse.org/innovation_fellowship/">Innovation Fellowship (18+)</a><a href="https://www.theknowledgehouse.org/technology_fellowship/">Technology Fellowship (18+ Connecticut)</a></div><a href="https://www.theknowledgehouse.org/training-solutions/">Training Solutions</a><a href="https://www.theknowledgehouse.org/locations/atlanta/">Locations</a><div class="tkh-overlay__sub"><a href="https://www.theknowledgehouse.org/locations/atlanta/">Atlanta</a><a href="https://www.theknowledgehouse.org/locations/newark/">Newark</a><a href="https://www.theknowledgehouse.org/locations/new-york/">New York</a><a href="https://www.theknowledgehouse.org/locations/Los-Angeles/">Los Angeles</a><a href="https://www.theknowledgehouse.org/locations/Washington-DC/">Washington, D.C.</a></div><a href="https://www.theknowledgehouse.org/get-involved/">Get Involved</a><div class="tkh-overlay__sub"><a href="https://www.theknowledgehouse.org/get-involved/">Get Involved</a><a href="https://bit.ly/TKHVolunteer-Opportunities">Volunteer Opportunities</a></div><a class="tkh-btn tkh-btn--primary tkh-btn--md" href="https://bit.ly/TKH-Donate" target="_blank" rel="noopener">Donate<span class="tkh-ripple"></span></a></div>
+<section class="tkh-announce" style="background:var(--tkh-lavender)">
+  <div class="tkh-announce__row">
+    <p class="tkh-announce__text">🚀 The 2027 Innovation Fellowship (18+) is Open! 👉</p>
+    <a class="tkh-btn tkh-btn--tertiary tkh-btn--md tkh-btn--rounded" href="https://bit.ly/27-TKH-apply" target="_blank" rel="noopener">Apply Today<span class="tkh-ripple"></span></a>
+  </div>
+</section>
+<section class="tkh-hero" style="background-image:url('https://d2x0vsetbcibj0.cloudfront.net/media/homepage/banner/Header_BG.png')"><video class="tkh-hero__media" src="https://d2x0vsetbcibj0.cloudfront.net/media/homepage/videos/v6_FINAL.mp4" poster="https://d2x0vsetbcibj0.cloudfront.net/media/homepage/banner/Header_BG.png" autoplay muted loop playsinline></video></section>
+<section class="tkh-mission" style="background:var(--tkh-off-white)">
+  <div class="tkh-mission__col">
+    <h2 data-tkh-reveal>11 years of Tech Workforce Development</h2>
+    <div class="tkh-mission__body" data-tkh-reveal><p>Established in 2014, TKH has been providing high-tech training to thousands of students from underserved communities across the country. With roots in the South Bronx, TKH is a national organization delivering programs in New York, Newark, Atlanta, Los Angeles, and Washington DC.</p><p>Our mission is to empower and sustain a talent pipeline of technologists and digital leaders who will uplift their communities.</p></div>
+  </div>
+</section>
+<section class="tkh-pillars" style="background:var(--tkh-off-white)"><div class="tkh-pillars__row"><div class="tkh-pillars__item" data-tkh-reveal>
+      <h3>WE SERVE</h3>
+      <img src="https://d2x0vsetbcibj0.cloudfront.net/media/stats/icon/we_serve_l5Tq4yW.png" alt="" width="89" height="89">
+    </div><div class="tkh-pillars__item" data-tkh-reveal>
+      <h3>WE EMPOWER</h3>
+      <img src="https://d2x0vsetbcibj0.cloudfront.net/media/stats/icon/We_Empower_Icon.png" alt="" width="89" height="89">
+    </div><div class="tkh-pillars__item" data-tkh-reveal>
+      <h3>WE EDUCATE</h3>
+      <img src="https://d2x0vsetbcibj0.cloudfront.net/media/stats/icon/We_Educate.png" alt="" width="89" height="89">
+    </div></div></section>
+<section class="tkh-testi" style="background-image:url('https://d2x0vsetbcibj0.cloudfront.net/media/homepage/banner/Desktop_-_9.png')" data-autoplay="8000" data-speed="1000">
+  <div class="tkh-testi__col">
+    <div class="tkh-testi__viewport" data-tkh-reveal><div class="tkh-testi__track"><div class="tkh-testi__slide">
+        <div class="tkh-testi__photo" style="background-image:url('https://d2x0vsetbcibj0.cloudfront.net/media/testimonail/images/Charles_Naut.png')" role="img" aria-label="Charles Naut"></div>
+        <div class="tkh-testi__text"><div>
+          <h2>Testimonials</h2>
+          <p class="tkh-testi__quote">&quot;Being a volunteer is a way for me to give back and help other people start careers in the tech industry. So many people helped me throughout the years as part of my journey, and being a volunteer with The Knowledge House is a way to pay that forward. All the Innovation Fellows are so motivated and excited about what they are working on. It's a joy to be able to provide fellows with  guidance and assistance.&quot;</p>
+          <p class="tkh-testi__name">&#8212; Charles Naut</p>
+          <p class="tkh-testi__role">Co-Founder and CTO at Rain</p>
+        </div></div>
+      </div><div class="tkh-testi__slide">
+        <div class="tkh-testi__photo" style="background-image:url('https://d2x0vsetbcibj0.cloudfront.net/media/testimonail/images/Nathan_Bauman.png')" role="img" aria-label="Nathan Bauman"></div>
+        <div class="tkh-testi__text"><div>
+          <h2>Testimonials</h2>
+          <p class="tkh-testi__quote">&quot;One thing that I am grateful for as I finish the KKCF program was the ability to not only learn web development skills but also participate in career workshops after the end of the summer program and be able to further build skills that will help me in my career and going into college.&quot;</p>
+          <p class="tkh-testi__name">&#8212; Nathan Bauman</p>
+          <p class="tkh-testi__role">Karim Kharbouch Coding Fellowship, 2023-2024</p>
+        </div></div>
+      </div><div class="tkh-testi__slide">
+        <div class="tkh-testi__photo" style="background-image:url('https://d2x0vsetbcibj0.cloudfront.net/media/testimonail/images/Mercedes_La_Infierno.2.png')" role="img" aria-label="Mercedes La Infierno"></div>
+        <div class="tkh-testi__text"><div>
+          <h2>Testimonials</h2>
+          <p class="tkh-testi__quote">&quot;This year-long program was a true test of endurance, patience, and perseverance—areas where I’ve grown, with room for more. Working with my Web Development class and Project Management team has been a pleasure. Before the fellowship, I lacked the confidence, knowledge, and resources I now have. Though I doubted myself at times, I pushed through and accomplished something I’m truly proud of. 🎉 It was challenging, but also the most rewarding experience, thanks to the incredible support system around me.&quot;</p>
+          <p class="tkh-testi__name">&#8212; Mercedes La Infierno</p>
+          <p class="tkh-testi__role">Innovation Fellowship, Web Development Track 2023-2024</p>
+        </div></div>
+      </div><div class="tkh-testi__slide">
+        <div class="tkh-testi__photo" style="background-image:url('https://d2x0vsetbcibj0.cloudfront.net/media/testimonail/images/Mickal_Famorca.png')" role="img" aria-label="Mickal Famorca"></div>
+        <div class="tkh-testi__text"><div>
+          <h2>Testimonials</h2>
+          <p class="tkh-testi__quote">&quot;I want to take a moment to express my heartfelt gratitude to the incredible staff and the entire TKH community who have supported me throughout this journey. Your guidance has been invaluable, and you have helped shape my vision of what I aspire to achieve as a data scientist. I seriously cannot thank you all enough for the opportunity you’ve given me—I won’t let y'all down!&quot;</p>
+          <p class="tkh-testi__name">&#8212; Mickal Famorca</p>
+          <p class="tkh-testi__role">Innovation Fellowship, Data Science Track 2023-2024</p>
+        </div></div>
+      </div><div class="tkh-testi__slide">
+        <div class="tkh-testi__photo" style="background-image:url('https://d2x0vsetbcibj0.cloudfront.net/media/testimonail/images/Kamili_Saint-Leger.png')" role="img" aria-label="Kamili Saint-Leger"></div>
+        <div class="tkh-testi__text"><div>
+          <h2>Testimonials</h2>
+          <p class="tkh-testi__quote">“TKH opened me up to a world that I didn’t think was possible without going to college first. I've met people and made connections I could have never dreamed of, and I'm now in a better place than if I had just gone straight to college. It was a great way to learn what I wanted to do with my life without spending thousands of dollars on a degree first.”</p>
+          <p class="tkh-testi__name">&#8212; Kamili Saint-Leger</p>
+          <p class="tkh-testi__role">Snap Lens Academy Scholar at Snap Inc.</p>
+        </div></div>
+      </div></div></div>
+    <div class="tkh-testi__controls">
+      <button class="tkh-testi__btn tkh-testi__prev" aria-label="Previous slide">Back</button>
+      <span class="tkh-testi__frac"><span class="tkh-testi__cur">1</span>/<span>5</span></span>
+      <button class="tkh-testi__btn tkh-testi__next" aria-label="Next slide">Next</button>
+    </div>
+  </div>
+</section>
+<section class="tkh-news" style="background:var(--tkh-purple-news)">
+  <div class="tkh-news__col">
+    <h2 data-tkh-reveal>Recent News</h2>
+    <p class="tkh-news__sub" data-tkh-reveal>Check out The Knowledge House in the news</p>
+    <div class="tkh-news__grid"><div class="tkh-news__card" data-tkh-reveal>
+        <a href="https://www.cityandstateny.com/power-lists/2026/03/2026-bronx-power-100/412385/#jerelyn-rodriguez" target="_blank" rel="noopener">
+          <div class="tkh-news__img" style="background-image:url('https://d2x0vsetbcibj0.cloudfront.net/media/news/images/The_2025_Bronx_Power_100_Website_image.png')"></div>
+          <h3>The 2026 Bronx Power 100</h3>
+        </a>
+      </div><div class="tkh-news__card" data-tkh-reveal>
+        <a href="https://www.youtube.com/watch?v=Lh98nnSBpHM" target="_blank" rel="noopener">
+          <div class="tkh-news__img" style="background-image:url('https://d2x0vsetbcibj0.cloudfront.net/media/news/images/IMG_9677_2.jpg')"></div>
+          <h3>BronxNet Today: The Knowledge House Hosts AI Programming Preview</h3>
+        </a>
+      </div><div class="tkh-news__card" data-tkh-reveal>
+        <a href="https://thebaconmagazine.com/2026/02/11/jerelyn-rodriguez-williams-is-building-a-national-pipeline-for-women-in-ai-cybersecurity-and-data/" target="_blank" rel="noopener">
+          <div class="tkh-news__img" style="background-image:url('https://d2x0vsetbcibj0.cloudfront.net/media/news/images/jerelyn_in_purple.jpg')"></div>
+          <h3>Jerelyn Rodriguez Williams Is Building a National Pipeline for Women in AI, Cybersecurity, and Data</h3>
+        </a>
+      </div></div>
+  </div>
+</section>
+<footer class="tkh-footer" style="background:var(--tkh-footer-gray)">
+  <div class="tkh-footer__row">
+    <div class="tkh-footer__brand">
+      <img class="tkh-footer__logo" src="https://d2x0vsetbcibj0.cloudfront.net/media/logos/TKH_Horizontal_Purple_Logo_Hi-Res.png" alt="The Knowledge House">
+      <div class="tkh-footer__social"><a href="https://www.facebook.com/theknowledgehouse/" target="_blank" rel="noopener" aria-label="Facebook"><img src="https://d2x0vsetbcibj0.cloudfront.net/media/footer/link/iconmonstr-facebook-4-240_1_EavSZ6q.png" alt="Facebook"></a><a href="https://www.youtube.com/channel/UChfWv3rKwkaH_nbPrQPkH6w" target="_blank" rel="noopener" aria-label="Youtube"><img src="https://d2x0vsetbcibj0.cloudfront.net/media/footer/link/iconmonstr-youtube-9-240_1_XHFr6Xq.png" alt="Youtube"></a><a href="https://twitter.com/theknowledgehou?lang=en" target="_blank" rel="noopener" aria-label="twitter"><img src="https://d2x0vsetbcibj0.cloudfront.net/media/footer/link/1691832581twitter-x-icon-png.png" alt="twitter"></a><a href="https://www.instagram.com/theknowledgehouse/?hl=en" target="_blank" rel="noopener" aria-label="instagram"><img src="https://d2x0vsetbcibj0.cloudfront.net/media/footer/link/iconmonstr-instagram-9-240_1_lyxDVlX.png" alt="instagram"></a><a href="https://www.linkedin.com/school/theknowledgehouse/" target="_blank" rel="noopener" aria-label="linkedin"><img src="https://d2x0vsetbcibj0.cloudfront.net/media/footer/link/iconmonstr-linkedin-4-240_1_BEOv7XZ.png" alt="linkedin"></a></div>
+      <div class="tkh-footer__badges"><a href="https://www.charitynavigator.org/ein/472747713" target="_blank" rel="noopener"><img src="https://d2x0vsetbcibj0.cloudfront.net/static-final/assets/img/Four_Star_Rating_Badge_Transparent_2026.png" alt="Charity Navigator Four-Star Rating 2026"></a><a href="https://app.candid.org/profile/9517117/the-knowledge-house-fellowship-inc" target="_blank" rel="noopener"><img src="https://d2x0vsetbcibj0.cloudfront.net/static-final/assets/img/candid-seal-platinum-2026.png" alt="Candid Platinum Transparency 2026"></a></div>
+    </div>
+    <div class="tkh-footer__links"><div class="tkh-footer__col"><div>
+      <h2>About</h2>
+      <ul><li><a href="https://www.theknowledgehouse.org/our_story/#section1">Our Story</a></li><li><a href="https://www.theknowledgehouse.org/team_and_supporters/">Board and Staff</a></li><li><a href="https://www.theknowledgehouse.org/news/">News</a></li><li><a href="https://theknowledgehouse.my.canva.site/2024-annual-report-web">2024 Annual Report</a></li><li><a href="https://theknowledgehouse.extensishrtalent.com/careers/jobs">Join the Team</a></li></ul>
+    </div></div><div class="tkh-footer__col"><div>
+      <h2>Programs</h2>
+      <ul><li><a href="https://www.theknowledgehouse.org/apply/">Programs Overview</a></li><li><a href="https://www.theknowledgehouse.org/teen_tech_launchpad/">Teen Tech Launchpad (High School)</a></li><li><a href="https://www.theknowledgehouse.org/innovation_fellowship/">Innovation Fellowship (18+)</a></li><li><a href="https://www.theknowledgehouse.org/technology_fellowship/">Technology Fellowship (18+ Connecticut)</a></li></ul>
+    </div></div><div class="tkh-footer__col"><div>
+      <h2>Locations</h2>
+      <ul><li><a href="https://www.theknowledgehouse.org/locations/atlanta/">Atlanta</a></li><li><a href="https://www.theknowledgehouse.org/locations/newark/">Newark</a></li><li><a href="https://www.theknowledgehouse.org/locations/new-york/">New York</a></li><li><a href="https://www.theknowledgehouse.org/locations/Los-Angeles/">Los Angeles</a></li><li><a href="https://www.theknowledgehouse.org/locations/Washington-DC/">Washington, D.C.</a></li></ul>
+    </div></div><div class="tkh-footer__col"><div>
+      <h2>Get Involved</h2>
+      <ul><li><a href="https://www.theknowledgehouse.org/get-involved/">Get Involved</a></li><li><a href="https://bit.ly/TKHVolunteer-Opportunities">Volunteer Opportunities</a></li></ul>
+    </div></div><div class="tkh-footer__col"><div>
+      <h2>Contact Info</h2>
+      <ul class="tkh-footer__contact">
+        <li><svg viewBox="0 0 24 24" width="18" height="22" aria-hidden="true"><path fill="currentColor" d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1 1 12 5.5a3.5 3.5 0 0 1 0 7z"/></svg><span>79 Alexander Avenue, Suite 51A<br>Bronx, NY 10454</span></li>
+        <li><svg viewBox="0 0 24 18" width="22" height="17" aria-hidden="true"><path fill="currentColor" d="M0 0h24v2.2L12 10 0 2.2V0zm0 4.6l12 7.8 12-7.8V18H0V4.6z"/></svg><a href="mailto:info@theknowledgehouse.org">info@theknowledgehouse.org</a></li>
+      </ul>
+    </div></div></div>
+  </div>
+</footer>
+<div class="tkh-legal" style="background:var(--tkh-lavender)">
+  <div class="tkh-legal__row">
+    <a href="https://www.theknowledgehouse.org/terms_of_use/">TERMS OF USE</a><a href="https://www.theknowledgehouse.org/privacy_policy/">PRIVACY POLICY</a>
+    <p>© 2026 The Knowledge House</p>
+  </div>
+</div>
+<script>
+(() => {
+  document.querySelectorAll('.tkh-header').forEach((h) => {
+    const b = h.querySelector('.tkh-burger');
+    if (b) b.addEventListener('click', () => {
+      const open = h.classList.toggle('is-open');
+      b.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  });
+})();
+(() => {
+  document.querySelectorAll('.tkh-testi').forEach((root) => {
+    const vp = root.querySelector('.tkh-testi__viewport');
+    const track = root.querySelector('.tkh-testi__track');
+    const real = [...track.children];
+    const n = real.length; if (!n) return;
+    const speed = +root.dataset.speed || 1000, delay = +root.dataset.autoplay || 8000;
+    track.prepend(real[n - 1].cloneNode(true));
+    track.append(real[0].cloneNode(true));
+    let i = 1, busy = false, timer;
+    const cur = root.querySelector('.tkh-testi__cur');
+    const setH = () => { vp.style.height = track.children[i].offsetHeight + 'px'; };
+    const go = (to, animate = true) => {
+      i = to;
+      track.style.transition = animate ? 'transform ' + speed + 'ms ease' : 'none';
+      track.style.transform = 'translateX(' + (-100 * i) + '%)';
+      cur.textContent = ((i - 1 + n) % n) + 1;
+      setH();
+    };
+    track.addEventListener('transitionend', (e) => {
+      if (e.target !== track) return;
+      busy = false;
+      if (i === 0) go(n, false);
+      if (i === n + 1) go(1, false);
+    });
+    const step = (d) => { if (busy) return; busy = true; go(i + d); };
+    const restart = () => { clearInterval(timer); timer = setInterval(() => step(1), delay); };
+    root.querySelector('.tkh-testi__prev').addEventListener('click', () => { step(-1); restart(); });
+    root.querySelector('.tkh-testi__next').addEventListener('click', () => { step(1); restart(); });
+    window.addEventListener('resize', setH);
+    window.addEventListener('load', setH);
+    go(1, false); restart();
+  });
+})();
+(() => {
+  // Ripple origin follows the cursor entry/exit point.
+  document.querySelectorAll('.tkh-btn').forEach((btn) => {
+    let r = btn.querySelector('.tkh-ripple');
+    if (!r) { r = document.createElement('span'); r.className = 'tkh-ripple'; btn.appendChild(r); }
+    const place = (e) => {
+      const b = btn.getBoundingClientRect();
+      r.style.left = (e.clientX - b.left) + 'px';
+      r.style.top = (e.clientY - b.top) + 'px';
+      btn.style.setProperty('--tkh-ripple', Math.ceil(Math.max(b.width, b.height) * 2.5) + 'px');
+    };
+    btn.addEventListener('mouseenter', place);
+    btn.addEventListener('mouseleave', place);
+  });
+  // Fade-in on scroll.
+  const els = document.querySelectorAll('[data-tkh-reveal]');
+  if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('is-revealed')); return; }
+  const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+    if (en.isIntersecting) { en.target.classList.add('is-revealed'); io.unobserve(en.target); }
+  }), { rootMargin: '0px 0px -120px 0px' });
+  els.forEach((e) => io.observe(e));
+})();
+</script>
+</body>
+</html>

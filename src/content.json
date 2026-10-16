@@ -1,0 +1,342 @@
+{
+  "nav": [
+    {
+      "label": "About",
+      "href": "https://www.theknowledgehouse.org/our_story",
+      "children": [
+        {
+          "label": "Our Story",
+          "href": "https://www.theknowledgehouse.org/our_story/#section1"
+        },
+        {
+          "label": "Board and Staff",
+          "href": "https://www.theknowledgehouse.org/team_and_supporters/"
+        },
+        {
+          "label": "News",
+          "href": "https://www.theknowledgehouse.org/news/"
+        },
+        {
+          "label": "2024 Annual Report",
+          "href": "https://theknowledgehouse.my.canva.site/2024-annual-report-web"
+        },
+        {
+          "label": "Join the Team",
+          "href": "https://theknowledgehouse.extensishrtalent.com/careers/jobs"
+        }
+      ]
+    },
+    {
+      "label": "Programs",
+      "href": "https://www.theknowledgehouse.org/apply/",
+      "children": [
+        {
+          "label": "Programs Overview",
+          "href": "https://www.theknowledgehouse.org/apply/"
+        },
+        {
+          "label": "Teen Tech Launchpad (High School)",
+          "href": "https://www.theknowledgehouse.org/teen_tech_launchpad/"
+        },
+        {
+          "label": "Innovation Fellowship (18+)",
+          "href": "https://www.theknowledgehouse.org/innovation_fellowship/"
+        },
+        {
+          "label": "Technology Fellowship (18+ Connecticut)",
+          "href": "https://www.theknowledgehouse.org/technology_fellowship/"
+        }
+      ]
+    },
+    {
+      "label": "Training Solutions",
+      "href": "https://www.theknowledgehouse.org/training-solutions/",
+      "children": []
+    },
+    {
+      "label": "Locations",
+      "href": "https://www.theknowledgehouse.org/locations/atlanta/",
+      "children": [
+        {
+          "label": "Atlanta",
+          "href": "https://www.theknowledgehouse.org/locations/atlanta/"
+        },
+        {
+          "label": "Newark",
+          "href": "https://www.theknowledgehouse.org/locations/newark/"
+        },
+        {
+          "label": "New York",
+          "href": "https://www.theknowledgehouse.org/locations/new-york/"
+        },
+        {
+          "label": "Los Angeles",
+          "href": "https://www.theknowledgehouse.org/locations/Los-Angeles/"
+        },
+        {
+          "label": "Washington, D.C.",
+          "href": "https://www.theknowledgehouse.org/locations/Washington-DC/"
+        }
+      ]
+    },
+    {
+      "label": "Get Involved",
+      "href": "https://www.theknowledgehouse.org/get-involved/",
+      "children": [
+        {
+          "label": "Get Involved",
+          "href": "https://www.theknowledgehouse.org/get-involved/"
+        },
+        {
+          "label": "Volunteer Opportunities",
+          "href": "https://bit.ly/TKHVolunteer-Opportunities"
+        }
+      ]
+    }
+  ],
+  "donate": {
+    "label": "Donate",
+    "href": "https://bit.ly/TKH-Donate"
+  },
+  "logo": {
+    "desktop": "https://d2x0vsetbcibj0.cloudfront.net/media/logos/TKH_Horizontal_Purple_Logo.png",
+    "mobile": "https://d2x0vsetbcibj0.cloudfront.net/media/logos/TKH_Horizontal_Purple_Logo.png",
+    "footer": "https://d2x0vsetbcibj0.cloudfront.net/media/logos/TKH_Horizontal_Purple_Logo_Hi-Res.png",
+    "favicon": "https://d2x0vsetbcibj0.cloudfront.net/static-final/assets/img/logo.png",
+    "anniversaryWhite": "https://d2x0vsetbcibj0.cloudfront.net/media/logos/10th_Anniversary_TKH_Logo_white.png"
+  },
+  "announcement": {
+    "text": "🚀 The 2027 Innovation Fellowship (18+) is Open! 👉",
+    "cta": {
+      "label": "Apply Today",
+      "href": "https://bit.ly/27-TKH-apply"
+    }
+  },
+  "hero": {
+    "video": "https://d2x0vsetbcibj0.cloudfront.net/media/homepage/videos/v6_FINAL.mp4",
+    "poster": "https://d2x0vsetbcibj0.cloudfront.net/media/homepage/banner/Header_BG.png",
+    "background": "https://d2x0vsetbcibj0.cloudfront.net/media/homepage/banner/Header_BG.png"
+  },
+  "mission": {
+    "title": "11 years of Tech Workforce Development",
+    "paragraphs": [
+      "Established in 2014, TKH has been providing high-tech training to thousands of students from underserved communities across the country. With roots in the South Bronx, TKH is a national organization delivering programs in New York, Newark, Atlanta, Los Angeles, and Washington DC.",
+      "Our mission is to empower and sustain a talent pipeline of technologists and digital leaders who will uplift their communities."
+    ]
+  },
+  "pillars": [
+    {
+      "label": "WE SERVE",
+      "icon": "https://d2x0vsetbcibj0.cloudfront.net/media/stats/icon/we_serve_l5Tq4yW.png"
+    },
+    {
+      "label": "WE EMPOWER",
+      "icon": "https://d2x0vsetbcibj0.cloudfront.net/media/stats/icon/We_Empower_Icon.png"
+    },
+    {
+      "label": "WE EDUCATE",
+      "icon": "https://d2x0vsetbcibj0.cloudfront.net/media/stats/icon/We_Educate.png"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "\"Being a volunteer is a way for me to give back and help other people start careers in the tech industry. So many people helped me throughout the years as part of my journey, and being a volunteer with The Knowledge House is a way to pay that forward. All the Innovation Fellows are so motivated and excited about what they are working on. It's a joy to be able to provide fellows with  guidance and assistance.\"",
+      "name": "Charles Naut",
+      "role": "Co-Founder and CTO at Rain",
+      "image": "https://d2x0vsetbcibj0.cloudfront.net/media/testimonail/images/Charles_Naut.png"
+    },
+    {
+      "quote": "\"One thing that I am grateful for as I finish the KKCF program was the ability to not only learn web development skills but also participate in career workshops after the end of the summer program and be able to further build skills that will help me in my career and going into college.\"",
+      "name": "Nathan Bauman",
+      "role": "Karim Kharbouch Coding Fellowship, 2023-2024",
+      "image": "https://d2x0vsetbcibj0.cloudfront.net/media/testimonail/images/Nathan_Bauman.png"
+    },
+    {
+      "quote": "\"This year-long program was a true test of endurance, patience, and perseverance—areas where I’ve grown, with room for more. Working with my Web Development class and Project Management team has been a pleasure. Before the fellowship, I lacked the confidence, knowledge, and resources I now have. Though I doubted myself at times, I pushed through and accomplished something I’m truly proud of. 🎉 It was challenging, but also the most rewarding experience, thanks to the incredible support system around me.\"",
+      "name": "Mercedes La Infierno",
+      "role": "Innovation Fellowship, Web Development Track 2023-2024",
+      "image": "https://d2x0vsetbcibj0.cloudfront.net/media/testimonail/images/Mercedes_La_Infierno.2.png"
+    },
+    {
+      "quote": "\"I want to take a moment to express my heartfelt gratitude to the incredible staff and the entire TKH community who have supported me throughout this journey. Your guidance has been invaluable, and you have helped shape my vision of what I aspire to achieve as a data scientist. I seriously cannot thank you all enough for the opportunity you’ve given me—I won’t let y'all down!\"",
+      "name": "Mickal Famorca",
+      "role": "Innovation Fellowship, Data Science Track 2023-2024",
+      "image": "https://d2x0vsetbcibj0.cloudfront.net/media/testimonail/images/Mickal_Famorca.png"
+    },
+    {
+      "quote": "“TKH opened me up to a world that I didn’t think was possible without going to college first. I've met people and made connections I could have never dreamed of, and I'm now in a better place than if I had just gone straight to college. It was a great way to learn what I wanted to do with my life without spending thousands of dollars on a degree first.”",
+      "name": "Kamili Saint-Leger",
+      "role": "Snap Lens Academy Scholar at Snap Inc.",
+      "image": "https://d2x0vsetbcibj0.cloudfront.net/media/testimonail/images/Kamili_Saint-Leger.png"
+    }
+  ],
+  "testimonialsBackground": "https://d2x0vsetbcibj0.cloudfront.net/media/homepage/banner/Desktop_-_9.png",
+  "news": {
+    "title": "Recent News",
+    "subtitle": "Check out The Knowledge House in the news",
+    "items": [
+      {
+        "title": "The 2026 Bronx Power 100",
+        "href": "https://www.cityandstateny.com/power-lists/2026/03/2026-bronx-power-100/412385/#jerelyn-rodriguez",
+        "image": "https://d2x0vsetbcibj0.cloudfront.net/media/news/images/The_2025_Bronx_Power_100_Website_image.png"
+      },
+      {
+        "title": "BronxNet Today: The Knowledge House Hosts AI Programming Preview",
+        "href": "https://www.youtube.com/watch?v=Lh98nnSBpHM",
+        "image": "https://d2x0vsetbcibj0.cloudfront.net/media/news/images/IMG_9677_2.jpg"
+      },
+      {
+        "title": "Jerelyn Rodriguez Williams Is Building a National Pipeline for Women in AI, Cybersecurity, and Data",
+        "href": "https://thebaconmagazine.com/2026/02/11/jerelyn-rodriguez-williams-is-building-a-national-pipeline-for-women-in-ai-cybersecurity-and-data/",
+        "image": "https://d2x0vsetbcibj0.cloudfront.net/media/news/images/jerelyn_in_purple.jpg"
+      }
+    ]
+  },
+  "footer": {
+    "columns": [
+      {
+        "title": "About",
+        "links": [
+          {
+            "label": "Our Story",
+            "href": "https://www.theknowledgehouse.org/our_story/#section1"
+          },
+          {
+            "label": "Board and Staff",
+            "href": "https://www.theknowledgehouse.org/team_and_supporters/"
+          },
+          {
+            "label": "News",
+            "href": "https://www.theknowledgehouse.org/news/"
+          },
+          {
+            "label": "2024 Annual Report",
+            "href": "https://theknowledgehouse.my.canva.site/2024-annual-report-web"
+          },
+          {
+            "label": "Join the Team",
+            "href": "https://theknowledgehouse.extensishrtalent.com/careers/jobs"
+          }
+        ]
+      },
+      {
+        "title": "Programs",
+        "links": [
+          {
+            "label": "Programs Overview",
+            "href": "https://www.theknowledgehouse.org/apply/"
+          },
+          {
+            "label": "Teen Tech Launchpad (High School)",
+            "href": "https://www.theknowledgehouse.org/teen_tech_launchpad/"
+          },
+          {
+            "label": "Innovation Fellowship (18+)",
+            "href": "https://www.theknowledgehouse.org/innovation_fellowship/"
+          },
+          {
+            "label": "Technology Fellowship (18+ Connecticut)",
+            "href": "https://www.theknowledgehouse.org/technology_fellowship/"
+          }
+        ]
+      },
+      {
+        "title": "Locations",
+        "links": [
+          {
+            "label": "Atlanta",
+            "href": "https://www.theknowledgehouse.org/locations/atlanta/"
+          },
+          {
+            "label": "Newark",
+            "href": "https://www.theknowledgehouse.org/locations/newark/"
+          },
+          {
+            "label": "New York",
+            "href": "https://www.theknowledgehouse.org/locations/new-york/"
+          },
+          {
+            "label": "Los Angeles",
+            "href": "https://www.theknowledgehouse.org/locations/Los-Angeles/"
+          },
+          {
+            "label": "Washington, D.C.",
+            "href": "https://www.theknowledgehouse.org/locations/Washington-DC/"
+          }
+        ]
+      },
+      {
+        "title": "Get Involved",
+        "links": [
+          {
+            "label": "Get Involved",
+            "href": "https://www.theknowledgehouse.org/get-involved/"
+          },
+          {
+            "label": "Volunteer Opportunities",
+            "href": "https://bit.ly/TKHVolunteer-Opportunities"
+          }
+        ]
+      }
+    ],
+    "contact": {
+      "address": [
+        "79 Alexander Avenue, Suite 51A",
+        "Bronx, NY 10454"
+      ],
+      "email": "info@theknowledgehouse.org"
+    },
+    "social": [
+      {
+        "label": "Facebook",
+        "href": "https://www.facebook.com/theknowledgehouse/",
+        "icon": "https://d2x0vsetbcibj0.cloudfront.net/media/footer/link/iconmonstr-facebook-4-240_1_EavSZ6q.png"
+      },
+      {
+        "label": "Youtube",
+        "href": "https://www.youtube.com/channel/UChfWv3rKwkaH_nbPrQPkH6w",
+        "icon": "https://d2x0vsetbcibj0.cloudfront.net/media/footer/link/iconmonstr-youtube-9-240_1_XHFr6Xq.png"
+      },
+      {
+        "label": "twitter",
+        "href": "https://twitter.com/theknowledgehou?lang=en",
+        "icon": "https://d2x0vsetbcibj0.cloudfront.net/media/footer/link/1691832581twitter-x-icon-png.png"
+      },
+      {
+        "label": "instagram",
+        "href": "https://www.instagram.com/theknowledgehouse/?hl=en",
+        "icon": "https://d2x0vsetbcibj0.cloudfront.net/media/footer/link/iconmonstr-instagram-9-240_1_lyxDVlX.png"
+      },
+      {
+        "label": "linkedin",
+        "href": "https://www.linkedin.com/school/theknowledgehouse/",
+        "icon": "https://d2x0vsetbcibj0.cloudfront.net/media/footer/link/iconmonstr-linkedin-4-240_1_BEOv7XZ.png"
+      }
+    ],
+    "badges": [
+      {
+        "label": "Charity Navigator Four-Star Rating 2026",
+        "href": "https://www.charitynavigator.org/ein/472747713",
+        "image": "https://d2x0vsetbcibj0.cloudfront.net/static-final/assets/img/Four_Star_Rating_Badge_Transparent_2026.png"
+      },
+      {
+        "label": "Candid Platinum Transparency 2026",
+        "href": "https://app.candid.org/profile/9517117/the-knowledge-house-fellowship-inc",
+        "image": "https://d2x0vsetbcibj0.cloudfront.net/static-final/assets/img/candid-seal-platinum-2026.png"
+      }
+    ]
+  },
+  "legal": {
+    "links": [
+      {
+        "label": "TERMS OF USE",
+        "href": "https://www.theknowledgehouse.org/terms_of_use/"
+      },
+      {
+        "label": "PRIVACY POLICY",
+        "href": "https://www.theknowledgehouse.org/privacy_policy/"
+      }
+    ],
+    "copyright": "© 2026 The Knowledge House"
+  }
+}

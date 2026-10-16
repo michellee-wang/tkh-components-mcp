@@ -1,0 +1,6 @@
+.tkh-mission { padding: 16px; }
+.tkh-mission__col { max-width: 979px; margin: 0 auto; padding: 24px; text-align: center; }
+.tkh-mission__body { margin: 48px; }
+.tkh-mission__body p { color: var(--tkh-black); font-size: 18px; line-height: 27px; }
+.tkh-mission__body p + p { margin-top: 30px; }
+@media (max-width: 767.98px) { .tkh-mission__body { margin: 8px; } .tkh-mission h2 { font-size: 30px; line-height: 38px; } }

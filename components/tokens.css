@@ -1,0 +1,17 @@
+:root {
+  --tkh-purple: #332459;
+  --tkh-purple-news: #342459;
+  --tkh-purple-nav: #291B4B;
+  --tkh-gold: #FFC20A;
+  --tkh-lavender: #C0BFF8;
+  --tkh-off-white: #F6F3F1;
+  --tkh-footer-gray: #E2E2E2;
+  --tkh-dropdown-gray: #E7E7E7;
+  --tkh-text: #525252;
+  --tkh-black: #000000;
+  --tkh-white: #FFFFFF;
+  --tkh-font: 'Lato', sans-serif;
+  --tkh-container: 1140px;
+  --tkh-header-h: 96px;
+  --tkh-shadow-dropdown: 0 5px 10px rgba(16,16,16,.05);
+}

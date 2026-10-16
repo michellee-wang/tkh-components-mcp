@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TKH: Site Header (desktop nav + dropdowns + mobile burger)</title>
+<link rel="icon" href="https://d2x0vsetbcibj0.cloudfront.net/static-final/assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700;900&display=swap">
+<style>
+:root {
+  --tkh-purple: #332459;
+  --tkh-purple-news: #342459;
+  --tkh-purple-nav: #291B4B;
+  --tkh-gold: #FFC20A;
+  --tkh-lavender: #C0BFF8;
+  --tkh-off-white: #F6F3F1;
+  --tkh-footer-gray: #E2E2E2;
+  --tkh-dropdown-gray: #E7E7E7;
+  --tkh-text: #525252;
+  --tkh-black: #000000;
+  --tkh-white: #FFFFFF;
+  --tkh-font: 'Lato', sans-serif;
+  --tkh-container: 1140px;
+  --tkh-header-h: 96px;
+  --tkh-shadow-dropdown: 0 5px 10px rgba(16,16,16,.05);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { overflow-x: hidden; }
+body {
+  margin: 0;
+  font-family: var(--tkh-font);
+  font-size: 18px; line-height: 27px; font-weight: 400;
+  color: var(--tkh-text);
+  background-color: var(--tkh-purple);
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6, p { margin: 0; }
+h2 { font-size: 36px; line-height: 45px; font-weight: 900; color: var(--tkh-black); }
+h3 { font-size: 21px; line-height: 29.4px; font-weight: 900; color: var(--tkh-black); }
+a { color: inherit; text-decoration: none; transition: color .3s; }
+img { max-width: 100%; }
+ul { margin: 0; padding: 0; }
+
+.tkh-container { width: 100%; max-width: var(--tkh-container); margin: 0 auto; padding: 0 15px; }
+
+/* Scrollbar: 5px, gold thumb over a faint track (reads purple because body is purple) */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background-color: rgba(16,16,16,.05); }
+::-webkit-scrollbar-thumb { background-color: var(--tkh-gold); }
+
+/* Buttons with cursor-origin circular ripple fill */
+.tkh-btn {
+  position: relative; z-index: 0; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--tkh-font); font-weight: 700; text-align: center; white-space: nowrap;
+  border: 0; border-radius: 0; cursor: pointer; text-decoration: none;
+  transition: color .3s;
+}
+.tkh-btn > .tkh-ripple {
+  position: absolute; z-index: -1; display: block; width: 0; height: 0;
+  border-radius: 50%; transform: translate(-50%, -50%);
+  transition: width .6s, height .6s; pointer-events: none;
+}
+.tkh-btn:hover > .tkh-ripple { width: var(--tkh-ripple, 640px); height: var(--tkh-ripple, 640px); }
+.tkh-btn--sm { font-size: 16px; line-height: 17.6px; padding: 13px 27px; }
+.tkh-btn--md { font-size: 18px; line-height: 19.8px; padding: 20px 60px; }
+/* primary: gold -> purple flood, text white */
+.tkh-btn--primary { background-color: var(--tkh-gold); color: var(--tkh-purple); }
+.tkh-btn--primary > .tkh-ripple { background-color: var(--tkh-purple); }
+.tkh-btn--primary:hover { color: var(--tkh-white); }
+/* tertiary: purple -> white flood, text purple */
+.tkh-btn--tertiary { background-color: var(--tkh-purple); color: var(--tkh-white); }
+.tkh-btn--tertiary > .tkh-ripple { background-color: var(--tkh-white); }
+.tkh-btn--tertiary:hover { color: var(--tkh-purple); }
+.tkh-btn--rounded { border-radius: 8px; }
+
+/* Scroll reveal (AOS "fade", 400ms ease) */
+[data-tkh-reveal] { opacity: 0; transition: opacity .4s ease; }
+[data-tkh-reveal].is-revealed { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { [data-tkh-reveal] { opacity: 1; transition: none; } }
+
+
+.tkh-header { background: var(--tkh-white); position: relative; z-index: 50; }
+.tkh-header__inner { height: var(--tkh-header-h); display: flex; align-items: center; justify-content: space-between; }
+.tkh-header__logo img { height: 64px; width: auto; display: block; }
+.tkh-header__right { display: flex; align-items: center; }
+.tkh-nav { display: flex; align-items: center; list-style: none; gap: 18px; margin-right: 21px; }
+.tkh-nav > li { position: relative; }
+.tkh-nav > li > a { display: block; font-size: 18px; line-height: 27px; font-weight: 700; color: var(--tkh-purple-nav); padding: 34px 0; }
+.tkh-nav > li > a > span { position: relative; padding: 0 8px; }
+.tkh-nav > li > a > span::after {
+  content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px;
+  background: var(--tkh-gold); transform: scaleX(0); transition: all .3s;
+}
+.tkh-nav > li:hover > a { color: var(--tkh-gold); }
+.tkh-nav > li:hover > a > span::after { transform: scaleX(1); }
+.tkh-nav__sub {
+  position: absolute; top: calc(100% - 3px); left: -17px; min-width: 250px;
+  list-style: none; padding: 30px 0 30px 20px; background: var(--tkh-dropdown-gray);
+  box-shadow: var(--tkh-shadow-dropdown);
+  opacity: 0; visibility: hidden; transform: translateY(6px);
+  transition: opacity .3s, transform .3s, visibility .3s;
+}
+.tkh-nav > li:hover > .tkh-nav__sub, .tkh-nav > li:focus-within > .tkh-nav__sub { opacity: 1; visibility: visible; transform: none; }
+.tkh-nav__sub a { display: flex; align-items: center; padding: 4px 40px; font-size: 16px; line-height: 1.8; color: var(--tkh-purple-nav); white-space: nowrap; }
+.tkh-nav__sub a:hover { color: var(--tkh-white); }
+.tkh-burger { display: none; width: 34px; height: 20px; position: relative; background: none; border: 0; cursor: pointer; padding: 0; }
+.tkh-burger span { position: absolute; left: 0; width: 100%; height: 2px; background: var(--tkh-purple-nav); transition: transform .3s, top .3s; }
+.tkh-burger span:nth-child(1) { top: 4px; }
+.tkh-burger span:nth-child(2) { top: 14px; }
+.tkh-header.is-open .tkh-burger span { background: var(--tkh-white); }
+.tkh-header.is-open .tkh-burger span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+.tkh-header.is-open .tkh-burger span:nth-child(2) { top: 9px; transform: rotate(-45deg); }
+.tkh-overlay {
+  position: fixed; inset: 0; background: var(--tkh-purple); z-index: 40;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+  opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; overflow-y: auto; padding: 100px 20px 40px;
+}
+.tkh-overlay a { color: var(--tkh-white); font-size: 28px; font-weight: 900; }
+.tkh-overlay a:hover { color: var(--tkh-gold); }
+.tkh-overlay .tkh-overlay__sub a { font-size: 16px; font-weight: 400; color: var(--tkh-lavender); }
+.tkh-overlay .tkh-overlay__sub { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin-top: -10px; }
+.tkh-header.is-open + .tkh-overlay { opacity: 1; visibility: visible; }
+@media (max-width: 991.98px) {
+  .tkh-header__inner { height: auto; padding-top: 16px; padding-bottom: 16px; }
+  .tkh-header__logo img { height: 5vh; min-height: 36px; }
+  .tkh-nav, .tkh-header__right .tkh-btn { display: none; }
+  .tkh-burger { display: block; z-index: 60; }
+  .tkh-header.is-open { background: transparent; position: fixed; inset: 0 0 auto 0; }
+}
+
+</style>
+</head>
+<body>
+<header class="tkh-header">
+  <div class="tkh-container tkh-header__inner">
+    <a class="tkh-header__logo" href="/"><img src="https://d2x0vsetbcibj0.cloudfront.net/media/logos/TKH_Horizontal_Purple_Logo.png" alt="TKH Logo"></a>
+    <div class="tkh-header__right">
+      <nav aria-label="Main"><ul class="tkh-nav"><li><a href="https://www.theknowledgehouse.org/our_story"><span>About</span></a><ul class="tkh-nav__sub"><li><a href="https://www.theknowledgehouse.org/our_story/#section1">Our Story</a></li><li><a href="https://www.theknowledgehouse.org/team_and_supporters/">Board and Staff</a></li><li><a href="https://www.theknowledgehouse.org/news/">News</a></li><li><a href="https://theknowledgehouse.my.canva.site/2024-annual-report-web">2024 Annual Report</a></li><li><a href="https://theknowledgehouse.extensishrtalent.com/careers/jobs">Join the Team</a></li></ul></li><li><a href="https://www.theknowledgehouse.org/apply/"><span>Programs</span></a><ul class="tkh-nav__sub"><li><a href="https://www.theknowledgehouse.org/apply/">Programs Overview</a></li><li><a href="https://www.theknowledgehouse.org/teen_tech_launchpad/">Teen Tech Launchpad (High School)</a></li><li><a href="https://www.theknowledgehouse.org/innovation_fellowship/">Innovation Fellowship (18+)</a></li><li><a href="https://www.theknowledgehouse.org/technology_fellowship/">Technology Fellowship (18+ Connecticut)</a></li></ul></li><li><a href="https://www.theknowledgehouse.org/training-solutions/"><span>Training Solutions</span></a></li><li><a href="https://www.theknowledgehouse.org/locations/atlanta/"><span>Locations</span></a><ul class="tkh-nav__sub"><li><a href="https://www.theknowledgehouse.org/locations/atlanta/">Atlanta</a></li><li><a href="https://www.theknowledgehouse.org/locations/newark/">Newark</a></li><li><a href="https://www.theknowledgehouse.org/locations/new-york/">New York</a></li><li><a href="https://www.theknowledgehouse.org/locations/Los-Angeles/">Los Angeles</a></li><li><a href="https://www.theknowledgehouse.org/locations/Washington-DC/">Washington, D.C.</a></li></ul></li><li><a href="https://www.theknowledgehouse.org/get-involved/"><span>Get Involved</span></a><ul class="tkh-nav__sub"><li><a href="https://www.theknowledgehouse.org/get-involved/">Get Involved</a></li><li><a href="https://bit.ly/TKHVolunteer-Opportunities">Volunteer Opportunities</a></li></ul></li></ul></nav>
+      <a class="tkh-btn tkh-btn--primary tkh-btn--sm" href="https://bit.ly/TKH-Donate" target="_blank" rel="noopener">Donate<span class="tkh-ripple"></span></a>
+      <button class="tkh-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="tkh-overlay"><a href="https://www.theknowledgehouse.org/our_story">About</a><div class="tkh-overlay__sub"><a href="https://www.theknowledgehouse.org/our_story/#section1">Our Story</a><a href="https://www.theknowledgehouse.org/team_and_supporters/">Board and Staff</a><a href="https://www.theknowledgehouse.org/news/">News</a><a href="https://theknowledgehouse.my.canva.site/2024-annual-report-web">2024 Annual Report</a><a href="https://theknowledgehouse.extensishrtalent.com/careers/jobs">Join the Team</a></div><a href="https://www.theknowledgehouse.org/apply/">Programs</a><div class="tkh-overlay__sub"><a href="https://www.theknowledgehouse.org/apply/">Programs Overview</a><a href="https://www.theknowledgehouse.org/teen_tech_launchpad/">Teen Tech Launchpad (High School)</a><a href="https://www.theknowledgehouse.org/innovation_fellowship/">Innovation Fellowship (18+)</a><a href="https://www.theknowledgehouse.org/technology_fellowship/">Technology Fellowship (18+ Connecticut)</a></div><a href="https://www.theknowledgehouse.org/training-solutions/">Training Solutions</a><a href="https://www.theknowledgehouse.org/locations/atlanta/">Locations</a><div class="tkh-overlay__sub"><a href="https://www.theknowledgehouse.org/locations/atlanta/">Atlanta</a><a href="https://www.theknowledgehouse.org/locations/newark/">Newark</a><a href="https://www.theknowledgehouse.org/locations/new-york/">New York</a><a href="https://www.theknowledgehouse.org/locations/Los-Angeles/">Los Angeles</a><a href="https://www.theknowledgehouse.org/locations/Washington-DC/">Washington, D.C.</a></div><a href="https://www.theknowledgehouse.org/get-involved/">Get Involved</a><div class="tkh-overlay__sub"><a href="https://www.theknowledgehouse.org/get-involved/">Get Involved</a><a href="https://bit.ly/TKHVolunteer-Opportunities">Volunteer Opportunities</a></div><a class="tkh-btn tkh-btn--primary tkh-btn--md" href="https://bit.ly/TKH-Donate" target="_blank" rel="noopener">Donate<span class="tkh-ripple"></span></a></div>
+<script>
+(() => {
+  document.querySelectorAll('.tkh-header').forEach((h) => {
+    const b = h.querySelector('.tkh-burger');
+    if (b) b.addEventListener('click', () => {
+      const open = h.classList.toggle('is-open');
+      b.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  });
+})();
+(() => {
+  // Ripple origin follows the cursor entry/exit point.
+  document.querySelectorAll('.tkh-btn').forEach((btn) => {
+    let r = btn.querySelector('.tkh-ripple');
+    if (!r) { r = document.createElement('span'); r.className = 'tkh-ripple'; btn.appendChild(r); }
+    const place = (e) => {
+      const b = btn.getBoundingClientRect();
+      r.style.left = (e.clientX - b.left) + 'px';
+      r.style.top = (e.clientY - b.top) + 'px';
+      btn.style.setProperty('--tkh-ripple', Math.ceil(Math.max(b.width, b.height) * 2.5) + 'px');
+    };
+    btn.addEventListener('mouseenter', place);
+    btn.addEventListener('mouseleave', place);
+  });
+  // Fade-in on scroll.
+  const els = document.querySelectorAll('[data-tkh-reveal]');
+  if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('is-revealed')); return; }
+  const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+    if (en.isIntersecting) { en.target.classList.add('is-revealed'); io.unobserve(en.target); }
+  }), { rootMargin: '0px 0px -120px 0px' });
+  els.forEach((e) => io.observe(e));
+})();
+</script>
+</body>
+</html>

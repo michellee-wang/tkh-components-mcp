@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TKH: Hero Video Stage</title>
+<link rel="icon" href="https://d2x0vsetbcibj0.cloudfront.net/static-final/assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700;900&display=swap">
+<style>
+:root {
+  --tkh-purple: #332459;
+  --tkh-purple-news: #342459;
+  --tkh-purple-nav: #291B4B;
+  --tkh-gold: #FFC20A;
+  --tkh-lavender: #C0BFF8;
+  --tkh-off-white: #F6F3F1;
+  --tkh-footer-gray: #E2E2E2;
+  --tkh-dropdown-gray: #E7E7E7;
+  --tkh-text: #525252;
+  --tkh-black: #000000;
+  --tkh-white: #FFFFFF;
+  --tkh-font: 'Lato', sans-serif;
+  --tkh-container: 1140px;
+  --tkh-header-h: 96px;
+  --tkh-shadow-dropdown: 0 5px 10px rgba(16,16,16,.05);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { overflow-x: hidden; }
+body {
+  margin: 0;
+  font-family: var(--tkh-font);
+  font-size: 18px; line-height: 27px; font-weight: 400;
+  color: var(--tkh-text);
+  background-color: var(--tkh-purple);
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6, p { margin: 0; }
+h2 { font-size: 36px; line-height: 45px; font-weight: 900; color: var(--tkh-black); }
+h3 { font-size: 21px; line-height: 29.4px; font-weight: 900; color: var(--tkh-black); }
+a { color: inherit; text-decoration: none; transition: color .3s; }
+img { max-width: 100%; }
+ul { margin: 0; padding: 0; }
+
+.tkh-container { width: 100%; max-width: var(--tkh-container); margin: 0 auto; padding: 0 15px; }
+
+/* Scrollbar: 5px, gold thumb over a faint track (reads purple because body is purple) */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background-color: rgba(16,16,16,.05); }
+::-webkit-scrollbar-thumb { background-color: var(--tkh-gold); }
+
+/* Buttons with cursor-origin circular ripple fill */
+.tkh-btn {
+  position: relative; z-index: 0; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--tkh-font); font-weight: 700; text-align: center; white-space: nowrap;
+  border: 0; border-radius: 0; cursor: pointer; text-decoration: none;
+  transition: color .3s;
+}
+.tkh-btn > .tkh-ripple {
+  position: absolute; z-index: -1; display: block; width: 0; height: 0;
+  border-radius: 50%; transform: translate(-50%, -50%);
+  transition: width .6s, height .6s; pointer-events: none;
+}
+.tkh-btn:hover > .tkh-ripple { width: var(--tkh-ripple, 640px); height: var(--tkh-ripple, 640px); }
+.tkh-btn--sm { font-size: 16px; line-height: 17.6px; padding: 13px 27px; }
+.tkh-btn--md { font-size: 18px; line-height: 19.8px; padding: 20px 60px; }
+/* primary: gold -> purple flood, text white */
+.tkh-btn--primary { background-color: var(--tkh-gold); color: var(--tkh-purple); }
+.tkh-btn--primary > .tkh-ripple { background-color: var(--tkh-purple); }
+.tkh-btn--primary:hover { color: var(--tkh-white); }
+/* tertiary: purple -> white flood, text purple */
+.tkh-btn--tertiary { background-color: var(--tkh-purple); color: var(--tkh-white); }
+.tkh-btn--tertiary > .tkh-ripple { background-color: var(--tkh-white); }
+.tkh-btn--tertiary:hover { color: var(--tkh-purple); }
+.tkh-btn--rounded { border-radius: 8px; }
+
+/* Scroll reveal (AOS "fade", 400ms ease) */
+[data-tkh-reveal] { opacity: 0; transition: opacity .4s ease; }
+[data-tkh-reveal].is-revealed { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { [data-tkh-reveal] { opacity: 1; transition: none; } }
+
+
+.tkh-hero { background-color: #F3F4F3; background-size: cover; background-position: center; padding: 57px 15px 63px; display: flex; justify-content: center; }
+.tkh-hero__media { width: min(926px, 100%); aspect-ratio: 16 / 9; display: block; object-fit: contain; background: transparent; }
+@media (max-width: 767.98px) { .tkh-hero { padding: 24px 0; } }
+
+</style>
+</head>
+<body>
+<section class="tkh-hero" style="background-image:url('https://d2x0vsetbcibj0.cloudfront.net/media/homepage/banner/Header_BG.png')"><video class="tkh-hero__media" src="https://d2x0vsetbcibj0.cloudfront.net/media/homepage/videos/v6_FINAL.mp4" poster="https://d2x0vsetbcibj0.cloudfront.net/media/homepage/banner/Header_BG.png" autoplay muted loop playsinline></video></section>
+<script>
+(() => {
+  // Ripple origin follows the cursor entry/exit point.
+  document.querySelectorAll('.tkh-btn').forEach((btn) => {
+    let r = btn.querySelector('.tkh-ripple');
+    if (!r) { r = document.createElement('span'); r.className = 'tkh-ripple'; btn.appendChild(r); }
+    const place = (e) => {
+      const b = btn.getBoundingClientRect();
+      r.style.left = (e.clientX - b.left) + 'px';
+      r.style.top = (e.clientY - b.top) + 'px';
+      btn.style.setProperty('--tkh-ripple', Math.ceil(Math.max(b.width, b.height) * 2.5) + 'px');
+    };
+    btn.addEventListener('mouseenter', place);
+    btn.addEventListener('mouseleave', place);
+  });
+  // Fade-in on scroll.
+  const els = document.querySelectorAll('[data-tkh-reveal]');
+  if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('is-revealed')); return; }
+  const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+    if (en.isIntersecting) { en.target.classList.add('is-revealed'); io.unobserve(en.target); }
+  }), { rootMargin: '0px 0px -120px 0px' });
+  els.forEach((e) => io.observe(e));
+})();
+</script>
+</body>
+</html>

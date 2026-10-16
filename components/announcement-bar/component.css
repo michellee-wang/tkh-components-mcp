@@ -1,0 +1,5 @@
+.tkh-announce { min-height: 80px; display: flex; align-items: center; justify-content: center; padding: 14px 15px; text-align: center; }
+.tkh-announce__row { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.tkh-announce__text { font-size: 20px; line-height: 30px; color: var(--tkh-black); }
+.tkh-announce .tkh-btn { width: 151px; height: 52px; padding: 0; font-size: 16.2px; }
+@media (max-width: 767.98px) { .tkh-announce__row { flex-direction: column; gap: 8px; } }

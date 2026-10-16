@@ -1,0 +1,6 @@
+.tkh-legal { padding: 16px 15px; font-size: 14px; line-height: 21px; }
+.tkh-legal__row { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0 28px; }
+.tkh-legal a { color: var(--tkh-black); text-transform: uppercase; }
+.tkh-legal a:hover { color: var(--tkh-purple); }
+.tkh-legal p { color: var(--tkh-text); margin-left: -20px; }
+@media (max-width: 575.98px) { .tkh-legal p { margin-left: 0; width: 100%; text-align: center; } }
